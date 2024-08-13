@@ -59,3 +59,39 @@ class MenuPrincipal extends StatelessWidget {
     );
   }
 }
+
+class Noticias extends StatelessWidget {
+  final List<Map<String, String>> noticias = [
+    {
+      'titulo': 'Conferencia sobre tecnología',
+      'imagen': 'https://via.placeholder.com/150',
+      'descripcion': 'Una conferencia sobre las últimas tendencias en tecnología.'
+    },
+    {
+      'titulo': 'Nueva biblioteca en la universidad',
+      'imagen': 'https://via.placeholder.com/150',
+      'descripcion': 'La universidad ha inaugurado una nueva biblioteca moderna.'
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Noticias'),
+      ),
+      body: ListView.builder(
+        itemCount: noticias.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              leading: Image.network(noticias[index]['imagen']!),
+              title: Text(noticias[index]['titulo']!),
+              subtitle: Text(noticias[index]['descripcion']!),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
