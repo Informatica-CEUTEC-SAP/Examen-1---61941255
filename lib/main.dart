@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Universidad App',
+      title: 'App CEUTEC',
       initialRoute: '/',
       routes: {
         '/': (context) => MenuPrincipal(),
