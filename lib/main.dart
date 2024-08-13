@@ -120,3 +120,60 @@ class ListaTareas extends StatelessWidget {
     );
   }
 }
+
+
+class CambioMonedas extends StatefulWidget {
+  @override
+  _CambioMonedasState createState() => _CambioMonedasState();
+}
+
+class _CambioMonedasState extends State<CambioMonedas> {
+  String monedaSeleccionada = 'Dólar';
+  double tasaCambio = 24.0;
+  double valorInput = 0.0;
+  double resultado = 0.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cambio de Monedas'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            DropdownButton<String>(
+              value: monedaSeleccionada,
+              onChanged: (String? newValue) {
+                setState(() {
+                  monedaSeleccionada = newValue!;
+                  tasaCambio = monedaSeleccionada == 'Dólar' ? 24.0 : 28.0;
+                });
+              },
+              items: <String>['Dólar', 'Euro']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+            TextField(
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                setState(() {
+                  valorInput = double.parse(value);
+                  resultado = valorInput * tasaCambio;
+                });
+              },
+              decoration: InputDecoration(labelText: 'Valor en Lempiras'),
+            ),
+            SizedBox(height: 20),
+            Text('Resultado: $resultado $monedaSeleccionada'),
+          ],
+        ),
+      ),
+    );
+  }
+}
