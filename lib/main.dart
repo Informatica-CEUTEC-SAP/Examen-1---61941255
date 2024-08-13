@@ -95,3 +95,28 @@ class Noticias extends StatelessWidget {
     );
   }
 }
+
+class ListaTareas extends StatelessWidget {
+  final List<String> tareas = [
+    'Tarea de Matemáticas',
+    'Foro de Historia',
+    'Examen de Física',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Lista de Tareas'),
+      ),
+      body: ListView.builder(
+        itemCount: tareas.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(tareas[index]),
+          );
+        },
+      ),
+    );
+  }
+}
