@@ -79,28 +79,171 @@ class Noticias extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Noticias'),
+        backgroundColor: Colors.deepPurple,
       ),
-      body: ListView.builder(
-        itemCount: noticias.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              leading: Image.network(noticias[index]['imagen']!),
-              title: Text(noticias[index]['titulo']!),
-              subtitle: Text(noticias[index]['descripcion']!),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: <Widget>[
+            // Primera noticia
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 8,
+              margin: EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  // Imagen de la noticia
+                  ClipRRect(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
+                    child: Image.asset(
+                      'assets/noticia1.jpg',
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // Información de la noticia
+                  ListTile(
+                    leading: Icon(Icons.article, color: Colors.deepPurple),
+                    title: Text('Nueva Biblioteca Inaugurada'),
+                    subtitle: Text(
+                      'La universidad ha inaugurado una nueva biblioteca con más de 10,000 libros y recursos digitales.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          // Acción para leer más
+                        },
+                        child: Text(
+                          'LEER MÁS',
+                          style: TextStyle(color: Colors.deepPurple),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          );
-        },
+            // Segunda noticia
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 8,
+              margin: EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  // Imagen de la noticia
+                  ClipRRect(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
+                    child: Image.asset(
+                      'assets/noticia2.jpg',
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // Información de la noticia
+                  ListTile(
+                    leading: Icon(Icons.sports_soccer, color: Colors.deepPurple),
+                    title: Text('Equipo de Fútbol Gana el Campeonato'),
+                    subtitle: Text(
+                      'El equipo de fútbol de la universidad ha ganado el campeonato nacional por tercer año consecutivo.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          // Acción para leer más
+                        },
+                        child: Text(
+                          'LEER MÁS',
+                          style: TextStyle(color: Colors.deepPurple),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            // Tercera noticia
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 8,
+              margin: EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  // Imagen de la noticia
+                  ClipRRect(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
+                    child: Image.asset(
+                      'assets/noticia3.jpg',
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // Información de la noticia
+                  ListTile(
+                    leading: Icon(Icons.science, color: Colors.deepPurple),
+                    title: Text('Nueva Investigación en Energía Renovable'),
+                    subtitle: Text(
+                      'Científicos de la universidad han desarrollado un nuevo método para mejorar la eficiencia de la energía solar.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          // Acción para leer más
+                        },
+                        child: Text(
+                          'LEER MÁS',
+                          style: TextStyle(color: Colors.deepPurple),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 class ListaTareas extends StatelessWidget {
-  final List<String> tareas = [
-    'Tarea de Matemáticas',
-    'Foro de Historia',
-    'Examen de Física',
+final List<Map<String, String>> tareas = [
+    {
+      'persona': 'Juan Pérez',
+      'descripcion': 'Preparar la presentación del proyecto final.',
+      'fecha': '12/08/2024',
+    },
+    {
+      'persona': 'María López',
+      'descripcion': 'Revisar el informe de resultados trimestrales.',
+      'fecha': '14/08/2024',
+    },
+    {
+      'persona': 'Carlos García',
+      'descripcion': 'Enviar el reporte de asistencia de la clase de matemática.',
+      'fecha': '16/08/2024',
+    },
   ];
 
   @override
@@ -108,14 +251,63 @@ class ListaTareas extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de Tareas'),
+        backgroundColor: Colors.deepPurple,
       ),
-      body: ListView.builder(
-        itemCount: tareas.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(tareas[index]),
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                itemCount: tareas.length,
+                itemBuilder: (context, index) {
+                  final tarea = tareas[index];
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 5,
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            tarea['persona']!,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            tarea['descripcion']!,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Fecha: ${tarea['fecha']}',
+                            style: TextStyle(fontSize: 14, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                onPressed: () {
+                  // Acción para agregar nuevas tareas
+                },
+                child: Icon(Icons.add),
+                backgroundColor: Colors.deepPurple,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
