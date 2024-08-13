@@ -177,3 +177,46 @@ class _CambioMonedasState extends State<CambioMonedas> {
     );
   }
 }
+
+class Podcast extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Podcast'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.podcasts, size: 100),
+            SizedBox(height: 20),
+            Text('Reproduciendo...'),
+            Slider(
+              value: 30,
+              max: 100,
+              onChanged: (value) {},
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.skip_previous),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(Icons.play_arrow),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(Icons.skip_next),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
